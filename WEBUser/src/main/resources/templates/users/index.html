@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<link href="../static/Bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<a href="/users/save1/null" class="btn btn-success" >Crear usuario</a>
+			</div>
+		</div>
+		<div class="row">
+			<div th:if="${list.isEmpty()}" class="col-lg-12">
+				<h1>Sin datos</h1>
+				
+			</div>
+			<div th:if="${!list.isEmpty()}" class="col-lg-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Usuario</th>
+							<th>Nombre</th>
+							<th>Apellidos</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : ${list}">
+							<td th:text="${user.userName}" />
+							<td th:text="${user.userData.name}" />
+							<td th:text="${user.userData.lastName}" />
+							<td><a th:href="@{/users/save1/{id}(id=${user.userId})}">Editar</a></td>
+							<td><a th:href="@{/users/delete/{id}(id=${user.userId})}">Eliminar</a></td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
